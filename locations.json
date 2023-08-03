@@ -1,0 +1,38 @@
+{
+	"type": "geojson",
+	"data": {
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-74.742935, 40.217052]
+				},
+				"properties": {
+					"title": "Trenton"
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-75.165222, 39.9526]
+				},
+				"properties": {
+					"title": "Philadelphia"
+				}
+			},
+			{
+				"type": "Feature",
+				"geometry": {
+					"type": "Point",
+					"coordinates": [-74.358747, 40.09189]
+				},
+				"properties": {
+					"title": "Jackson Township"
+				}
+			}
+		]
+	}
+}
