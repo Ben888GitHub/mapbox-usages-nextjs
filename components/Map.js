@@ -90,7 +90,8 @@ const Map = ({ mapboxToken }) => {
 		const geocoder = new MapboxGeocoder({
 			accessToken: mapboxToken,
 			mapboxgl: mapboxgl,
-			placeholder: 'Search for places'
+			placeholder: 'Search for places',
+			marker: false
 		});
 
 		mapboxMap.on('move', () => {
@@ -133,9 +134,12 @@ const Map = ({ mapboxToken }) => {
 			new mapboxgl.Marker(markerContainer)
 				.setLngLat(center)
 				.setPopup(
-					new mapboxgl.Popup().setHTML(` <div class="bg-white  p-2">
+					new mapboxgl.Popup({
+						closeButton: false,
+						anchor: 'left'
+					}).setHTML(` <div class="bg-white  p-2">
                        
-                <p class="text-black text-lg font-medium">You are in: ${place_name}</p>
+                <p class="text-black text-lg font-medium">You are in: ${text}</p>
 
                   <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
                  
