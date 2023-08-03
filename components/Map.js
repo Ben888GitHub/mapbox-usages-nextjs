@@ -16,7 +16,7 @@ const responsiveMapDesign =
 
 const Map = ({ mapboxToken }) => {
 	// * this is where the map instance will be stored after initialization
-	const [map, setMap] = useState();
+	// const [map, setMap] = useState();
 
 	const [mapStyle, setMapStyle] = useState(light);
 
@@ -27,7 +27,7 @@ const Map = ({ mapboxToken }) => {
 		lat: 40.217052,
 		zoom: 9
 	});
-	const [zoom, setZoom] = useState(9);
+	// const [zoom, setZoom] = useState(9);
 
 	const mapNode = useRef(null);
 
@@ -147,7 +147,7 @@ const Map = ({ mapboxToken }) => {
 		mapboxMap.addControl(geocoder);
 
 		// save the map object to useState
-		setMap(mapboxMap);
+		// setMap(mapboxMap);
 
 		return () => {
 			mapboxMap.remove();
@@ -164,7 +164,7 @@ const Map = ({ mapboxToken }) => {
 
 	return (
 		<>
-			<p className="lg:text-3xl md:text-3xl text-xl mb-5">
+			<p className="lg:text-3xl md:text-3xl text-md mb-5">
 				Longitude: {coords.lng} | Latitude: {coords.lat} | Zoom: {coords.zoom}
 			</p>
 			<div ref={mapNode} className={responsiveMapDesign} />
