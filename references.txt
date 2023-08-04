@@ -41,6 +41,9 @@ Mapbox GL Basic Control Buttons
 https://docs.mapbox.com/mapbox-gl-js/example/navigation/
 https://docs.mapbox.com/mapbox-gl-js/api/markers/
 
+Mapbox GL Map style
+https://docs.mapbox.com/mapbox-gl-js/example/setstyle/
+
 ----------------------------------------------------------------
 
 Source code: 
