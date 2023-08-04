@@ -17,6 +17,8 @@ const responsiveMapDesign =
 
 let geoMarker;
 
+let mapboxMap;
+
 const Map = ({ mapboxToken }) => {
 	// * this is where the map instance will be stored after initialization
 	// const [map, setMap] = useState();
@@ -167,7 +169,7 @@ const Map = ({ mapboxToken }) => {
 		if (typeof window === 'undefined') return;
 
 		// otherwise, create a map instance
-		const mapboxMap = new mapboxgl.Map({
+		mapboxMap = new mapboxgl.Map({
 			container: node,
 			accessToken: mapboxToken,
 			style: mapStyle,
