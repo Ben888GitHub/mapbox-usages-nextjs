@@ -27,6 +27,15 @@ https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-outside-the-map/
 https://medium.com/codex/mapbox-gl-js-easy-way-to-geocode-data-for-your-community-web-app-d8e3d79e0770
 https://github.com/mapbox/mapbox-gl-geocoder
 
+
+Mapbox GL Directions API
+https://docs.mapbox.com/help/tutorials/getting-started-directions-api/ - Getting Started
+https://docs.mapbox.com/api/navigation/directions/#route-object - Directions API Props
+https://docs.mapbox.com/playground/directions/?coordinates=-74.004597%2C40.714431&coordinates=-73.971030%2C40.722834 - Directions Editor Playground
+https://stackoverflow.com/questions/49836989/mapbox-gl-js-adding-and-removing-geojson-sources-and-layers - Remove Direction Layer or Source
+https://chat.openai.com/c/a4e8b9ff-986d-4716-860e-b49661d84b11
+
+
 ----------------------------------------------------------------
 
 Others:

@@ -4,6 +4,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { locations } from '@/locations';
+import { getRoute } from '@/utils/generateRoute';
 
 // const mapStyle = 'mapbox://styles/benryan/clkuv54ck000u01po9b59cvgr';
 
@@ -91,12 +92,43 @@ const Map = ({ mapboxToken }) => {
 		textElement.className = `text-center ${
 			mapStyle === light ? 'text-black' : 'text-white'
 		} text-lg font-medium `;
-		// textElement.style.textAlign = 'center';
+
+		// Create a button element
+		const buttonElement = document.createElement('button');
+		buttonElement.textContent = 'Show route';
+		buttonElement.className =
+			'bg-blue-500 text-white px-3 py-1 rounded mx-auto';
+
+		// Center the button horizontally using flexbox
+		const buttonContainer = document.createElement('div');
+		buttonContainer.className = 'flex justify-center';
+		buttonContainer.appendChild(buttonElement);
+
+		let isButtonToggled = false;
+
+		const toggleButtonText = () => {
+			if ((buttonElement.textContent = 'Show route')) {
+				buttonElement.textContent = 'Hide route';
+			}
+			if ((buttonElement.textContent = 'Hide route')) {
+				buttonElement.textContent = 'Show route';
+			}
+			// isButtonToggled = !isButtonToggled;
+		};
+
+		buttonElement.addEventListener('click', () => {
+			// Perform an action when the button is clicked
+			// console.log(buttonElement.textContent);
+			// toggleButtonText();
+			getRoute(mapboxToken, mapboxMap, lng, lat);
+		});
 
 		const markerContainer = document.createElement('div');
 		markerContainer.appendChild(markerElement);
 		markerContainer.appendChild(textElement);
+		markerContainer.appendChild(buttonContainer);
 
+		// geoMarker = new mapboxgl.Marker(markerContainer)
 		geoMarker = new mapboxgl.Marker(markerContainer)
 			.setLngLat(center)
 			.setPopup(
@@ -108,6 +140,8 @@ const Map = ({ mapboxToken }) => {
                 <p class="text-black text-lg font-medium">You are in: ${text}</p>
 
                   <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
+
+               
                  
                </div>`)
 			)
@@ -118,6 +152,15 @@ const Map = ({ mapboxToken }) => {
 			// Remove the custom marker from the map
 			if (geoMarker) {
 				geoMarker.remove();
+				// mapboxMap.removeLayer('route');
+				// mapboxMap.removeSource('route');
+				// console.log(mapboxMap.getSource('route'));
+				if (mapboxMap.getLayer('route')) {
+					mapboxMap.removeLayer('route');
+				}
+				if (mapboxMap.getSource('route')) {
+					mapboxMap.removeSource('route');
+				}
 			}
 		});
 	};
@@ -146,6 +189,13 @@ const Map = ({ mapboxToken }) => {
 			marker: false
 		});
 
+		// const directions = new MapboxDirections({
+		// 	accessToken: mapboxToken,
+		// 	unit: 'metric',
+		// 	profile: 'mapbox/driving-traffic'
+		// });
+		// mapboxMap.addControl(directions, 'top-left');
+
 		mapboxMap.on('move', () => {
 			setCoords((currentCoords) => ({
 				...currentCoords,
@@ -155,12 +205,14 @@ const Map = ({ mapboxToken }) => {
 			}));
 		});
 
-		mapboxMap.on('load', () =>
+		mapboxMap.on('load', () => {
 			generateNewMarker({
 				map: mapboxMap,
 				...mapboxMap.getCenter()
-			})
-		);
+			});
+
+			// getRoute(mapboxToken, mapboxMap);
+		});
 
 		geocoder.on('result', (e) => {
 			const { result } = e;
