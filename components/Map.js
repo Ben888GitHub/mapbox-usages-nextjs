@@ -5,6 +5,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { locations } from '@/locations';
 import { getRoute } from '@/utils/generateRoute';
+import { themes } from '@/utils/mapThemes';
 
 // const mapStyle = 'mapbox://styles/benryan/clkuv54ck000u01po9b59cvgr';
 
@@ -221,9 +222,17 @@ const Map = ({ mapboxToken }) => {
 		// console.log(node);
 	}, [mapboxToken, mapStyle]);
 
-	const handleMapTheme = () => {
-		setMapStyle((currentStyle) => (currentStyle === light ? dark : light));
-		console.log(mapStyle);
+	// const handleMapTheme = () => {
+	// 	setMapStyle((currentStyle) => (currentStyle === light ? dark : light));
+	// 	console.log(mapStyle);
+	// };
+
+	const handleMapThemeWithOptions = (theme, layerId) => {
+		setMapStyle(
+			(currentStyle) => (currentStyle = `mapbox://styles/benryan/${layerId}`)
+		);
+		// console.log(mapStyle);
+		// setMapStyle(`mapbox://styles/benryan/${layerId}`);
 	};
 
 	return (
@@ -234,13 +243,26 @@ const Map = ({ mapboxToken }) => {
 			<div ref={mapNode} className={responsiveMapDesign} />
 			<br />
 
-			<button
+			{/* <button
 				onClick={handleMapTheme}
-				className={`bg-[#083344] p-3 rounded-md text-white`}
+				className={`bg-[#083344] p-3 rounded-md text-white mb-5`}
 			>
 				{' '}
 				{mapStyle === light ? 'Set to Dark' : 'Set to Light'}
-			</button>
+			</button> */}
+			{themes.map(({ theme, layerId }, idx) => (
+				<label key={layerId} className="inline-flex items-center mr-4">
+					<input
+						type="radio"
+						className="form-radio text-indigo-600"
+						name="theme"
+						value={theme}
+						onChange={() => handleMapThemeWithOptions(theme, layerId)}
+						defaultChecked={idx === 0}
+					/>
+					<span className="ml-2 text-lg">{theme}</span>
+				</label>
+			))}
 		</>
 	);
 };
