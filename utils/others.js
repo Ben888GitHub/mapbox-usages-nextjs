@@ -1,15 +1,5 @@
-import { locations } from '@/locations';
-import { getRoute } from './generateRoute';
-
-const popupHTML = (city, lng, lat) => ` <div class="bg-white  p-2">
-                   
-<p class="text-black text-lg font-medium">You are in: ${city}</p>
-
-  <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
- 
-</div>`;
-
-const generateNewMarker = ({ map, mapStyle, light, mapboxgl }) => {
+// Put this at Line 38 of Map.js component
+const generateNewMarker = ({ map }) => {
 	console.log(locations);
 
 	locations.map(({ city, lng, lat }) => {
@@ -34,22 +24,22 @@ const generateNewMarker = ({ map, mapStyle, light, mapboxgl }) => {
 				new mapboxgl.Popup({
 					closeButton: false,
 					anchor: 'left'
-				}).setHTML(popupHTML(city, lng, lat))
+				}).setHTML(
+					` <div class="bg-white  p-2">
+
+                   <p class="text-black text-lg font-medium">You are in: ${city}</p>
+
+                     <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
+
+                  </div>`
+				)
 			)
 			.addTo(map);
 	});
 };
 
-const generateGeocoderMarker = (
-	result,
-	mapboxMap,
-	geocoder,
-	geoMarker,
-	mapStyle,
-	light,
-	mapboxgl,
-	mapboxToken
-) => {
+// Put this on Line 41 of Map.js Component
+const generateGeocoderMarker = (result, mapboxMap, geocoder) => {
 	const { text, center } = result;
 
 	const [lng, lat] = center;
@@ -68,7 +58,6 @@ const generateGeocoderMarker = (
 	textElement.className = `text-center ${
 		mapStyle === light ? 'text-black' : 'text-white'
 	} text-lg font-medium `;
-	// textElement.style.textAlign = 'center';
 
 	// Create a button element
 	const buttonElement = document.createElement('button');
@@ -92,13 +81,20 @@ const generateGeocoderMarker = (
 	markerContainer.appendChild(textElement);
 	markerContainer.appendChild(buttonContainer);
 
+	// geoMarker = new mapboxgl.Marker(markerContainer)
 	geoMarker = new mapboxgl.Marker(markerContainer)
 		.setLngLat(center)
 		.setPopup(
 			new mapboxgl.Popup({
 				closeButton: false,
 				anchor: 'left'
-			}).setHTML(popupHTML(text, lng, lat))
+			}).setHTML(` <div class="bg-white  p-2">
+
+	            <p class="text-black text-lg font-medium">You are in: ${text}</p>
+
+	              <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
+
+	           </div>`)
 		)
 		.addTo(mapboxMap);
 
@@ -107,7 +103,9 @@ const generateGeocoderMarker = (
 		// Remove the custom marker from the map
 		if (geoMarker) {
 			geoMarker.remove();
-
+			// mapboxMap.removeLayer('route');
+			// mapboxMap.removeSource('route');
+			// console.log(mapboxMap.getSource('route'));
 			if (mapboxMap.getLayer('route')) {
 				mapboxMap.removeLayer('route');
 			}
@@ -117,5 +115,3 @@ const generateGeocoderMarker = (
 		}
 	});
 };
-
-export { generateNewMarker, generateGeocoderMarker };
