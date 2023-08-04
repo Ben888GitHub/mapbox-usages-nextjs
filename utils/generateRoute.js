@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-export const getRoute = async (mapboxToken, mapboxMap, lng, lat) => {
+export const getRoute = async (
+	mapboxToken,
+	mapboxMap,
+	lng,
+	lat,
+	mapStyle,
+	light
+) => {
 	const apiEndpoint = `https://api.mapbox.com/directions/v5/mapbox/driving/-74.742935,40.217052;${lng},${lat}?steps=true&geometries=geojson&access_token=${mapboxToken}`;
 
 	const { data } = await axios.get(apiEndpoint);
@@ -35,8 +42,8 @@ export const getRoute = async (mapboxToken, mapboxMap, lng, lat) => {
 				'line-cap': 'round'
 			},
 			paint: {
-				'line-color': '#3887be',
-				'line-width': 5,
+				'line-color': mapStyle === light ? '#3887be' : '#0ea5e9',
+				'line-width': 8,
 				'line-opacity': 0.75
 			}
 		});

@@ -120,7 +120,7 @@ const Map = ({ mapboxToken }) => {
 			// Perform an action when the button is clicked
 			// console.log(buttonElement.textContent);
 			// toggleButtonText();
-			getRoute(mapboxToken, mapboxMap, lng, lat);
+			getRoute(mapboxToken, mapboxMap, lng, lat, mapStyle, light);
 		});
 
 		const markerContainer = document.createElement('div');
