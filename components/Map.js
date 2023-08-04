@@ -3,11 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-
-import {
-	generateNewMarker,
-	generateGeocoderMarker
-} from '@/utils/generateMarkers';
+import { locations } from '@/locations';
 
 // const mapStyle = 'mapbox://styles/benryan/clkuv54ck000u01po9b59cvgr';
 
@@ -21,15 +17,110 @@ const responsiveMapDesign =
 let geoMarker;
 
 const Map = ({ mapboxToken }) => {
+	// * this is where the map instance will be stored after initialization
+	// const [map, setMap] = useState();
+
 	const [mapStyle, setMapStyle] = useState(light);
+
+	//     const [lng, setLng] = useState(-70.9);
+	// const [lat, setLat] = useState(42.35);
 	const [coords, setCoords] = useState({
 		lng: -74.742935,
 		lat: 40.217052,
 		zoom: 9
 	});
+	// const [zoom, setZoom] = useState(9);
 
-	// * this is where the map instance will be stored after initialization
 	const mapNode = useRef(null);
+
+	const generateNewMarker = ({ map }) => {
+		console.log(locations);
+
+		locations.map(({ city, lng, lat }) => {
+			const markerElement = document.createElement('div');
+			markerElement.className = 'custom-marker text-[50px] text-center';
+			markerElement.innerHTML = `🇺🇸`;
+			// markerElement.style.fontSize = '35px';
+			// markerElement.style.textAlign = 'center';
+			const textElement = document.createElement('div');
+			textElement.innerHTML = city;
+			textElement.className = `${
+				mapStyle === light ? 'text-black' : 'text-white'
+			} text-lg font-medium text-center`;
+
+			const markerContainer = document.createElement('div');
+			markerContainer.appendChild(markerElement);
+			markerContainer.appendChild(textElement);
+
+			new mapboxgl.Marker(markerContainer)
+				.setLngLat([lng, lat])
+				.setPopup(
+					new mapboxgl.Popup({
+						closeButton: false,
+						anchor: 'left'
+					}).setHTML(
+						` <div class="bg-white  p-2">
+                       
+                       <p class="text-black text-lg font-medium">You are in: ${city}</p>
+
+                         <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
+                        
+                      </div>`
+					)
+				)
+				.addTo(map);
+		});
+	};
+
+	const generateGeocoderMarker = (result, mapboxMap, geocoder) => {
+		const { text, center } = result;
+
+		const [lng, lat] = center;
+
+		// ? understand this
+		if (geoMarker) {
+			geoMarker.remove();
+		}
+
+		const markerElement = document.createElement('div');
+		markerElement.className = 'custom-marker text-[50px] text-center';
+		markerElement.innerHTML = `🇺🇸`;
+
+		const textElement = document.createElement('div');
+		textElement.innerHTML = text;
+		textElement.className = `text-center ${
+			mapStyle === light ? 'text-black' : 'text-white'
+		} text-lg font-medium `;
+		// textElement.style.textAlign = 'center';
+
+		const markerContainer = document.createElement('div');
+		markerContainer.appendChild(markerElement);
+		markerContainer.appendChild(textElement);
+
+		geoMarker = new mapboxgl.Marker(markerContainer)
+			.setLngLat(center)
+			.setPopup(
+				new mapboxgl.Popup({
+					closeButton: false,
+					anchor: 'left'
+				}).setHTML(` <div class="bg-white  p-2">
+                       
+                <p class="text-black text-lg font-medium">You are in: ${text}</p>
+
+                  <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
+                 
+               </div>`)
+			)
+			.addTo(mapboxMap);
+
+		// Listen to the 'clear' event of the geocoder
+		geocoder.on('clear', () => {
+			// Remove the custom marker from the map
+			if (geoMarker) {
+				geoMarker.remove();
+			}
+		});
+	};
 
 	useEffect(() => {
 		const node = mapNode.current;
@@ -67,24 +158,13 @@ const Map = ({ mapboxToken }) => {
 		mapboxMap.on('load', () =>
 			generateNewMarker({
 				map: mapboxMap,
-				...mapboxMap.getCenter(),
-				mapStyle,
-				light,
-				mapboxgl
+				...mapboxMap.getCenter()
 			})
 		);
 
 		geocoder.on('result', (e) => {
 			const { result } = e;
-			generateGeocoderMarker(
-				result,
-				mapboxMap,
-				geocoder,
-				geoMarker,
-				mapStyle,
-				light,
-				mapboxgl
-			);
+			generateGeocoderMarker(result, mapboxMap, geocoder);
 		});
 
 		mapboxMap.addControl(geocoder);
@@ -99,6 +179,7 @@ const Map = ({ mapboxToken }) => {
 
 	const handleMapTheme = () => {
 		setMapStyle((currentStyle) => (currentStyle === light ? dark : light));
+		console.log(mapStyle);
 	};
 
 	return (
