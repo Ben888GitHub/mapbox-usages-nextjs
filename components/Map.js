@@ -104,18 +104,6 @@ const Map = ({ mapboxToken }) => {
 		buttonContainer.className = 'flex justify-center';
 		buttonContainer.appendChild(buttonElement);
 
-		let isButtonToggled = false;
-
-		const toggleButtonText = () => {
-			if ((buttonElement.textContent = 'Show route')) {
-				buttonElement.textContent = 'Hide route';
-			}
-			if ((buttonElement.textContent = 'Hide route')) {
-				buttonElement.textContent = 'Show route';
-			}
-			// isButtonToggled = !isButtonToggled;
-		};
-
 		buttonElement.addEventListener('click', () => {
 			// Perform an action when the button is clicked
 			// console.log(buttonElement.textContent);
@@ -141,8 +129,6 @@ const Map = ({ mapboxToken }) => {
 
                   <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
 
-               
-                 
                </div>`)
 			)
 			.addTo(mapboxMap);
