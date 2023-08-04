@@ -26,6 +26,7 @@ https://docs.mapbox.com/api/search/geocoding/
 https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-outside-the-map/
 https://medium.com/codex/mapbox-gl-js-easy-way-to-geocode-data-for-your-community-web-app-d8e3d79e0770
 https://github.com/mapbox/mapbox-gl-geocoder
+https://docs.mapbox.com/help/tutorials/local-search-geocoding-api/ - Local Search with the Geocoding API
 
 
 Mapbox GL Directions API
@@ -36,6 +37,10 @@ https://stackoverflow.com/questions/49836989/mapbox-gl-js-adding-and-removing-ge
 https://chat.openai.com/c/a4e8b9ff-986d-4716-860e-b49661d84b11
 https://levelup.gitconnected.com/integrating-reactjs-mapbox-and-mapbox-directions-a654086a97fc - Other examples
 
+Mapbox GL Basic Control Buttons
+https://docs.mapbox.com/mapbox-gl-js/example/navigation/
+https://docs.mapbox.com/mapbox-gl-js/api/markers/
+
 ----------------------------------------------------------------
 
 Source code: 
@@ -43,6 +48,10 @@ Source code:
 - https://github.com/Ben888GitHub/mapbox-usages-nextjs/tree/with-direction-api (with-direction-api)
 
 ----------------------------------------------------------------
+
+Mapbox Studio / Editor
+- https://studio.mapbox.com/
+
 
 Others:
 https://dev.to/dqunbp/using-mapbox-gl-in-react-with-next-js-2glg - With NextJS
