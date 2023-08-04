@@ -20,6 +20,13 @@ https://docs.mapbox.com/mapbox-gl-js/plugins/
 Styling
 https://docs.mapbox.com/mapbox-gl-js/style-spec/
 
+Mapbox GL Geocoding Search
+https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder/ 
+https://docs.mapbox.com/api/search/geocoding/
+https://docs.mapbox.com/mapbox-gl-js/example/mapbox-gl-geocoder-outside-the-map/
+https://medium.com/codex/mapbox-gl-js-easy-way-to-geocode-data-for-your-community-web-app-d8e3d79e0770
+https://github.com/mapbox/mapbox-gl-geocoder
+
 ----------------------------------------------------------------
 
 Others:
@@ -30,3 +37,7 @@ https://gis.stackexchange.com/questions/349256/how-to-popup-on-hover-with-mapbox
 https://stackoverflow.com/questions/54254582/adding-popups-on-hovering-to-custom-markers-using-mapbox-gl-js - Marker's Popup On Hover
 --
 https://docs.mapbox.com/mapbox-gl-js/example/popup-on-click/ - Marker's Popup On Click
+https://docs.mapbox.com/mapbox-gl-js/example/geojson-markers/ - Marker with text
+https://docs.mapbox.com/help/getting-started/add-markers/ - Add Markers
+https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/ - Add Markers
+--
