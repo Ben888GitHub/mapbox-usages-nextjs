@@ -24,28 +24,46 @@ export const getRoute = async (
 	};
 
 	// if the route already exists on the map, we'll reset it using setData
-	if (mapboxMap.getSource('route')) {
-		mapboxMap.getSource('route').setData(geojson);
-	}
+	// if (mapboxMap.getSource('route')) {
+	// 	mapboxMap.getSource('route').setData(geojson);
+	// }
 
-	// otherwise, we'll make a new request
-	else {
-		mapboxMap.addLayer({
-			id: 'route',
-			type: 'line',
-			source: {
-				type: 'geojson',
-				data: geojson
-			},
-			layout: {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
-			paint: {
-				'line-color': mapStyle === light ? '#3887be' : '#0ea5e9',
-				'line-width': 8,
-				'line-opacity': 0.75
-			}
-		});
-	}
+	// // otherwise, we'll make a new request
+	// else {
+	// 	mapboxMap.addLayer({
+	// 		id: 'route',
+	// 		type: 'line',
+	// 		source: {
+	// 			type: 'geojson',
+	// 			data: geojson
+	// 		},
+	// 		layout: {
+	// 			'line-join': 'round',
+	// 			'line-cap': 'round'
+	// 		},
+	// 		paint: {
+	// 			'line-color': mapStyle === light ? '#3887be' : '#0ea5e9',
+	// 			'line-width': 8,
+	// 			'line-opacity': 0.75
+	// 		}
+	// 	});
+	// }
+
+	mapboxMap.addLayer({
+		id: 'route',
+		type: 'line',
+		source: {
+			type: 'geojson',
+			data: geojson
+		},
+		layout: {
+			'line-join': 'round',
+			'line-cap': 'round'
+		},
+		paint: {
+			'line-color': mapStyle === light ? '#3887be' : '#0ea5e9',
+			'line-width': 8,
+			'line-opacity': 0.75
+		}
+	});
 };
