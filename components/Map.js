@@ -207,6 +207,9 @@ const Map = ({ mapboxToken }) => {
 
 		mapboxMap.addControl(geocoder);
 
+		// Add zoom and rotation controls to the map.
+		mapboxMap.addControl(new mapboxgl.NavigationControl(), 'top-left');
+
 		return () => {
 			mapboxMap.remove();
 			mapboxMap.off('load', generateNewMarker);

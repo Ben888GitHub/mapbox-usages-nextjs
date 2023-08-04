@@ -34,7 +34,13 @@ https://docs.mapbox.com/api/navigation/directions/#route-object - Directions API
 https://docs.mapbox.com/playground/directions/?coordinates=-74.004597%2C40.714431&coordinates=-73.971030%2C40.722834 - Directions Editor Playground
 https://stackoverflow.com/questions/49836989/mapbox-gl-js-adding-and-removing-geojson-sources-and-layers - Remove Direction Layer or Source
 https://chat.openai.com/c/a4e8b9ff-986d-4716-860e-b49661d84b11
+https://levelup.gitconnected.com/integrating-reactjs-mapbox-and-mapbox-directions-a654086a97fc - Other examples
 
+----------------------------------------------------------------
+
+Source code: 
+- https://github.com/Ben888GitHub/mapbox-usages-nextjs (main)
+- https://github.com/Ben888GitHub/mapbox-usages-nextjs/tree/with-direction-api (with-direction-api)
 
 ----------------------------------------------------------------
 
