@@ -41,7 +41,7 @@ Mapbox GL Basic Control Buttons
 https://docs.mapbox.com/mapbox-gl-js/example/navigation/
 https://docs.mapbox.com/mapbox-gl-js/api/markers/
 
-Mapbox GL Map style
+Mapbox GL Map styling
 https://docs.mapbox.com/mapbox-gl-js/example/setstyle/
 
 ----------------------------------------------------------------
@@ -66,5 +66,7 @@ https://stackoverflow.com/questions/54254582/adding-popups-on-hovering-to-custom
 https://docs.mapbox.com/mapbox-gl-js/example/popup-on-click/ - Marker's Popup On Click
 https://docs.mapbox.com/mapbox-gl-js/example/geojson-markers/ - Marker with text
 https://docs.mapbox.com/help/getting-started/add-markers/ - Add Markers
-https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/ - Add Markers
 --
+https://docs.mapbox.com/help/tutorials/custom-markers-gl-js/ - Add Markers
+https://github.com/nagix/mapbox-gl-rain-layer - Mapbox GL Rain Layer
+https://nagix.github.io/mapbox-gl-rain-layer/#6.63/-0.947/102.067/0/45 - Mapbox GL Rain Layer
