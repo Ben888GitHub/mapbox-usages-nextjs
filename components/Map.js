@@ -6,6 +6,7 @@ import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { locations } from '@/locations';
 import { getRoute } from '@/utils/generateRoute';
 import { themes } from '@/utils/mapThemes';
+import RainLayer from 'mapbox-gl-rain-layer';
 
 // const mapStyle = 'mapbox://styles/benryan/clkuv54ck000u01po9b59cvgr';
 
@@ -235,6 +236,35 @@ const Map = ({ mapboxToken }) => {
 		// setMapStyle(`mapbox://styles/benryan/${layerId}`);
 	};
 
+	const handleEnableRainyAreas = () => {
+		const rainLayer = new RainLayer({
+			id: 'rain',
+			source: 'rainviewer',
+			scale: 'noaa'
+		});
+
+		mapboxMap.addLayer(rainLayer);
+		// You can get the HTML text for the legend
+		const legendHTML = rainLayer.getLegendHTML();
+		console.log(mapboxMap.getLayer('rain'));
+		// console.log(mapboxMap);
+	};
+
+	const handleDisableRainyAreas = () => {
+		if (mapboxMap.getLayer('rain')) {
+			console.log(mapboxMap.getLayer('rain'));
+			mapboxMap.removeLayer('rain');
+		}
+		if (mapboxMap.getSource('rain')) {
+			console.log(mapboxMap.getSource('rain'));
+			mapboxMap.removeSource('rain');
+		}
+		// You can get the HTML text for the legend
+		// const legendHTML = rainLayer.getLegendHTML();
+
+		// console.log(mapboxMap);
+	};
+
 	return (
 		<>
 			<p className="lg:text-3xl md:text-3xl text-md mb-5">
@@ -263,6 +293,22 @@ const Map = ({ mapboxToken }) => {
 					<span className="ml-2 text-lg">{theme}</span>
 				</label>
 			))}
+			<div className="flex mt-5">
+				<button
+					onClick={handleEnableRainyAreas}
+					className={`bg-[#083344] p-3 rounded-md text-white mr-3`}
+				>
+					Show Rainy Areas
+				</button>
+
+				<button
+					onClick={handleDisableRainyAreas}
+					className={`bg-[#083344] p-3 rounded-md text-white`}
+				>
+					{' '}
+					Hide Rainy Areas
+				</button>
+			</div>
 		</>
 	);
 };
