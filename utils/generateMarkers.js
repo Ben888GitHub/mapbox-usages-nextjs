@@ -57,6 +57,13 @@ const generateGeocoderMarker = (
 	// ? understand this
 	if (geoMarker) {
 		geoMarker.remove();
+
+		if (mapboxMap.getLayer('route')) {
+			mapboxMap.removeLayer('route');
+		}
+		if (mapboxMap.getSource('route')) {
+			mapboxMap.removeSource('route');
+		}
 	}
 
 	const markerElement = document.createElement('div');
