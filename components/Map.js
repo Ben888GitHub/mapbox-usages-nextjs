@@ -16,6 +16,8 @@ const responsiveMapDesign =
 
 let geoMarker;
 
+let mapboxMap;
+
 const Map = ({ mapboxToken }) => {
 	// * this is where the map instance will be stored after initialization
 	// const [map, setMap] = useState();
@@ -131,7 +133,7 @@ const Map = ({ mapboxToken }) => {
 		if (typeof window === 'undefined') return;
 
 		// otherwise, create a map instance
-		const mapboxMap = new mapboxgl.Map({
+		mapboxMap = new mapboxgl.Map({
 			container: node,
 			accessToken: mapboxToken,
 			style: mapStyle,
@@ -155,12 +157,17 @@ const Map = ({ mapboxToken }) => {
 			}));
 		});
 
-		mapboxMap.on('load', () =>
+		mapboxMap.on('load', () => {
 			generateNewMarker({
 				map: mapboxMap,
 				...mapboxMap.getCenter()
-			})
-		);
+			});
+
+			mapboxMap.addSource('ethnicity', {
+				type: 'vector',
+				url: 'mapbox://examples.8fgz4egr'
+			});
+		});
 
 		geocoder.on('result', (e) => {
 			const { result } = e;
@@ -182,6 +189,46 @@ const Map = ({ mapboxToken }) => {
 		console.log(mapStyle);
 	};
 
+	const getDemographicsData = () => {
+		const ethnicity = mapboxMap.getSource('ethnicity');
+		console.log(ethnicity);
+
+		mapboxMap.addLayer(
+			{
+				id: 'population',
+				type: 'circle',
+				source: 'ethnicity',
+				'source-layer': 'sf2010',
+				paint: {
+					// Make circles larger as the user zooms from z12 to z22.
+					'circle-radius': {
+						base: 1.75,
+						stops: [
+							[12, 2],
+							[22, 180]
+						]
+					},
+					// Color circles by ethnicity, using a `match` expression.
+					'circle-color': [
+						'match',
+						['get', 'ethnicity'],
+						'White',
+						'#fbb03b',
+						'Black',
+						'#223b53',
+						'Hispanic',
+						'#e55e5e',
+						'Asian',
+						'#3bb2d0',
+						/* other */ '#ccc'
+					]
+				}
+			},
+			// Place polygons under labels, roads and buildings.
+			'aeroway-polygon'
+		);
+	};
+
 	return (
 		<>
 			<p className="lg:text-3xl md:text-3xl text-md mb-5">
@@ -192,10 +239,17 @@ const Map = ({ mapboxToken }) => {
 
 			<button
 				onClick={handleMapTheme}
-				className={`bg-[#083344] p-3 rounded-md text-white`}
+				className={`bg-[#083344] p-3 rounded-md text-white mb-5`}
 			>
 				{' '}
 				{mapStyle === light ? 'Set to Dark' : 'Set to Light'}
+			</button>
+
+			<button
+				onClick={getDemographicsData}
+				className={`bg-[#083344] p-3 rounded-md text-white`}
+			>
+				Show Demographics Data
 			</button>
 		</>
 	);
