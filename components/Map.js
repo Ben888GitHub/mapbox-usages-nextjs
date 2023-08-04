@@ -113,11 +113,12 @@ const Map = ({ mapboxToken }) => {
 		buttonContainer.className = 'flex justify-center';
 		buttonContainer.appendChild(buttonElement);
 
-		buttonElement.addEventListener('click', () => {
+		buttonElement.addEventListener('click', async () => {
 			// Perform an action when the button is clicked
 			// console.log(buttonElement.textContent);
 			// toggleButtonText();
-			getRoute(mapboxToken, mapboxMap, lng, lat, mapStyle, light);
+			// getRoute(mapboxToken, mapboxMap, lng, lat, mapStyle, light);
+			await getRoute(mapboxToken, mapboxMap, lng, lat, mapStyle, light);
 		});
 
 		const markerContainer = document.createElement('div');
