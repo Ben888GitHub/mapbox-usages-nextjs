@@ -5,6 +5,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { locations } from '@/locations';
 import { getRoute } from '@/utils/generateRoute';
+import { generateNewMarker } from '@/utils/generateMarkers';
 
 // const mapStyle = 'mapbox://styles/benryan/clkuv54ck000u01po9b59cvgr';
 
@@ -34,44 +35,44 @@ const Map = ({ mapboxToken }) => {
 
 	const mapNode = useRef(null);
 
-	const generateNewMarker = ({ map }) => {
-		console.log(locations);
+	// const generateNewMarker = ({ map }) => {
+	// 	console.log(locations);
 
-		locations.map(({ city, lng, lat }) => {
-			const markerElement = document.createElement('div');
-			markerElement.className = 'custom-marker text-[50px] text-center';
-			markerElement.innerHTML = `🇺🇸`;
-			// markerElement.style.fontSize = '35px';
-			// markerElement.style.textAlign = 'center';
-			const textElement = document.createElement('div');
-			textElement.innerHTML = city;
-			textElement.className = `${
-				mapStyle === light ? 'text-black' : 'text-white'
-			} text-lg font-medium text-center`;
+	// 	locations.map(({ city, lng, lat }) => {
+	// 		const markerElement = document.createElement('div');
+	// 		markerElement.className = 'custom-marker text-[50px] text-center';
+	// 		markerElement.innerHTML = `🇺🇸`;
+	// 		// markerElement.style.fontSize = '35px';
+	// 		// markerElement.style.textAlign = 'center';
+	// 		const textElement = document.createElement('div');
+	// 		textElement.innerHTML = city;
+	// 		textElement.className = `${
+	// 			mapStyle === light ? 'text-black' : 'text-white'
+	// 		} text-lg font-medium text-center`;
 
-			const markerContainer = document.createElement('div');
-			markerContainer.appendChild(markerElement);
-			markerContainer.appendChild(textElement);
+	// 		const markerContainer = document.createElement('div');
+	// 		markerContainer.appendChild(markerElement);
+	// 		markerContainer.appendChild(textElement);
 
-			new mapboxgl.Marker(markerContainer)
-				.setLngLat([lng, lat])
-				.setPopup(
-					new mapboxgl.Popup({
-						closeButton: false,
-						anchor: 'left'
-					}).setHTML(
-						` <div class="bg-white  p-2">
-                       
-                       <p class="text-black text-lg font-medium">You are in: ${city}</p>
+	// 		new mapboxgl.Marker(markerContainer)
+	// 			.setLngLat([lng, lat])
+	// 			.setPopup(
+	// 				new mapboxgl.Popup({
+	// 					closeButton: false,
+	// 					anchor: 'left'
+	// 				}).setHTML(
+	// 					` <div class="bg-white  p-2">
 
-                         <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
-                        
-                      </div>`
-					)
-				)
-				.addTo(map);
-		});
-	};
+	//                    <p class="text-black text-lg font-medium">You are in: ${city}</p>
+
+	//                      <p class="text-black text-[14px]">Coordinate: ${lng}, ${lat}</p>
+
+	//                   </div>`
+	// 				)
+	// 			)
+	// 			.addTo(map);
+	// 	});
+	// };
 
 	const generateGeocoderMarker = (result, mapboxMap, geocoder) => {
 		const { text, center } = result;
@@ -194,7 +195,10 @@ const Map = ({ mapboxToken }) => {
 		mapboxMap.on('load', () => {
 			generateNewMarker({
 				map: mapboxMap,
-				...mapboxMap.getCenter()
+				...mapboxMap.getCenter(),
+				mapStyle,
+				light,
+				mapboxgl
 			});
 
 			// getRoute(mapboxToken, mapboxMap);
