@@ -205,14 +205,16 @@ const Map = ({ mapboxToken }) => {
 			// getRoute(mapboxToken, mapboxMap);
 		});
 
+		// set new marker on a location on geocoder search
 		geocoder.on('result', (e) => {
 			const { result } = e;
 			generateGeocoderMarker(result, mapboxMap, geocoder);
 		});
 
+		// Add geocoder search on the map on load
 		mapboxMap.addControl(geocoder);
 
-		// Add zoom and rotation controls to the map.
+		// Add zoom and rotation controls to the map on load.
 		mapboxMap.addControl(new mapboxgl.NavigationControl(), 'top-left');
 
 		return () => {
