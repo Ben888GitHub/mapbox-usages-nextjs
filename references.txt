@@ -82,3 +82,7 @@ Get Final Map from Mapbox Studio Editor
 https://docs.mapbox.com/help/tutorials/add-points-pt-1/
 https://docs.mapbox.com/help/tutorials/add-points-pt-2/
 https://docs.mapbox.com/help/tutorials/add-points-pt-3/
+
+3D Building Display
+https://www.youtube.com/watch?v=YkH1awf6d98 - 3D buildings made in Studio Editor
+https://docs.mapbox.com/mapbox-gl-js/example/3d-buildings/ - 3D buildings made in Mapbox GL JS

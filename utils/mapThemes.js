@@ -12,3 +12,14 @@ export const themes = [
 		layerId: 'clkwkn6yp002h01pwh3xig96h'
 	}
 ];
+
+export const staticMapsThemes = [
+	{
+		theme: '3D Theme',
+		styleId: 'mapbox://styles/benryan/cllnn8uen000v01r87m1cc36w'
+	},
+	{
+		theme: '2D Theme',
+		styleId: 'mapbox://styles/benryan/cllnpsjz4000t01rc93x5e5uo'
+	}
+];

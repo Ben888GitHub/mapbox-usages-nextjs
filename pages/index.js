@@ -9,9 +9,17 @@ const StudioTilesetMap = dynamic(
 	() => import('@/components/StudioTilesetMap'),
 	{ ssr: false }
 );
-// const MapGeoJson = dynamic(() => import('@/components/MapGeoJson'), {
-// 	ssr: false
-// });
+
+const ThreeDMapStatic = dynamic(() => import('@/components/ThreeDMapStatic'), {
+	ssr: false
+});
+
+const ThreeDMapDynamic = dynamic(
+	() => import('@/components/ThreeDMapDynamic'),
+	{
+		ssr: false
+	}
+);
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -28,6 +36,12 @@ export default function Home({ mapboxToken }) {
 			<MapGeoJson mapboxToken={mapboxToken} /> */}
 			<br />
 			<StudioTilesetMap mapboxToken={mapboxToken} />
+			<br />
+			<br />
+			<ThreeDMapStatic mapboxToken={mapboxToken} />
+			<br />
+			<br />
+			<ThreeDMapDynamic mapboxToken={mapboxToken} />
 		</main>
 	);
 }
