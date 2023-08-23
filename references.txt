@@ -86,3 +86,12 @@ https://docs.mapbox.com/help/tutorials/add-points-pt-3/
 3D Building Display
 https://www.youtube.com/watch?v=YkH1awf6d98 - 3D buildings made in Studio Editor
 https://docs.mapbox.com/mapbox-gl-js/example/3d-buildings/ - 3D buildings made in Mapbox GL JS
+https://docs.mapbox.com/help/tutorials/add-3d-buildings-studio/ - Basic 3D Styling on Studio Editor
+
+Following Mapbox APIs that can be used to Read and Write to Studio Editor or Mapbox GL JS (For Tech Geek)
+https://docs.mapbox.com/api/maps/datasets/ - Datasets API
+https://docs.mapbox.com/api/maps/uploads/ - Uploads API
+https://docs.mapbox.com/api/maps/styles/ - Styles API
+https://docs.mapbox.com/api/search/search-box/ - Search Box API
+https://docs.mapbox.com/api/search/geocoding/ - Geocoding API
+https://docs.mapbox.com/api/navigation/directions/ - Directions API
