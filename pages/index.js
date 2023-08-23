@@ -5,6 +5,10 @@ import dynamic from 'next/dynamic';
 // import Map from '@/components/Map';
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
+const StudioTilesetMap = dynamic(
+	() => import('@/components/StudioTilesetMap'),
+	{ ssr: false }
+);
 // const MapGeoJson = dynamic(() => import('@/components/MapGeoJson'), {
 // 	ssr: false
 // });
@@ -22,6 +26,8 @@ export default function Home({ mapboxToken }) {
 			<Map mapboxToken={mapboxToken} />
 			{/* <br />
 			<MapGeoJson mapboxToken={mapboxToken} /> */}
+			<br />
+			<StudioTilesetMap mapboxToken={mapboxToken} />
 		</main>
 	);
 }

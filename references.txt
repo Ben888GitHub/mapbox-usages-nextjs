@@ -77,3 +77,8 @@ GeoJSON Editor & Generator
 https://geojson.io/#map=2/4.41/19.96 
 https://geojson.tools/ 
 https://vector.rocks/ 
+
+Get Final Map from Mapbox Studio Editor
+https://docs.mapbox.com/help/tutorials/add-points-pt-1/
+https://docs.mapbox.com/help/tutorials/add-points-pt-2/
+https://docs.mapbox.com/help/tutorials/add-points-pt-3/
