@@ -148,12 +148,7 @@ const Map = ({ mapboxToken }) => {
 
                </div>`)
 			)
-			.addTo(mapboxMap)
-			.getElement() // * to enable function to zoom in the map when marker is clicked
-			.addEventListener('click', () => {
-				// Zoom to the marker's coordinates when clicked
-				mapboxMap.flyTo({ center, zoom: 12 });
-			});
+			.addTo(mapboxMap);
 
 		// Listen to the 'clear' event of the geocoder
 		geocoder.on('clear', () => {
