@@ -59,6 +59,10 @@ const StudioTilesetMap = ({ mapboxToken }) => {
 				)
 				.addTo(mapboxMap);
 		});
+
+		return () => {
+			mapboxMap.remove();
+		};
 	}, [mapboxToken]);
 
 	return (

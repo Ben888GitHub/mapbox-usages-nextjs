@@ -3,21 +3,29 @@ import { Inter } from 'next/font/google';
 import dynamic from 'next/dynamic';
 
 // import Map from '@/components/Map';
-const Map = dynamic(() => import('@/components/Map'), { ssr: false });
+const Map = dynamic(() => import('@/components/Map'), {
+	ssr: false,
+	loading: () => <p className="text-lg text-center mt-5">Loading...</p>
+});
 
 const StudioTilesetMap = dynamic(
 	() => import('@/components/StudioTilesetMap'),
-	{ ssr: false }
+	{
+		ssr: false,
+		loading: () => <p className="text-lg text-center mt-5">Loading...</p>
+	}
 );
 
 const ThreeDMapStatic = dynamic(() => import('@/components/ThreeDMapStatic'), {
-	ssr: false
+	ssr: false,
+	loading: () => <p className="text-lg text-center mt-5">Loading...</p>
 });
 
 const ThreeDMapDynamic = dynamic(
 	() => import('@/components/ThreeDMapDynamic'),
 	{
-		ssr: false
+		ssr: false,
+		loading: () => <p className="text-lg text-center mt-5">Loading...</p>
 	}
 );
 

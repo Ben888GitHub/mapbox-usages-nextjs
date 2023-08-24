@@ -1,4 +1,5 @@
 Installation
+https://docs.mapbox.com/help/getting-started/web-apps/ 
 https://www.mapbox.com/install/javascript/bundler-install/
 https://docs.mapbox.com/mapbox-gl-js/guides/install/
 
@@ -14,7 +15,7 @@ https://docs.mapbox.com/mapbox-gl-js/example/ - Examples
 Web Services API
 https://docs.mapbox.com/api/overview/ 
 
-Plugins
+Plugins, Frameworks, Libraries
 https://docs.mapbox.com/mapbox-gl-js/plugins/ 
 
 Styling
@@ -95,3 +96,14 @@ https://docs.mapbox.com/api/maps/styles/ - Styles API
 https://docs.mapbox.com/api/search/search-box/ - Search Box API
 https://docs.mapbox.com/api/search/geocoding/ - Geocoding API
 https://docs.mapbox.com/api/navigation/directions/ - Directions API
+
+--------------------------------
+
+Performance Optimizations
+https://chat.openai.com/c/00af9ddc-0a60-44e8-91a5-565fb18f3bb8 - General Tips
+https://docs.mapbox.com/help/tutorials/improve-perceived-performance-with-static/ - Static Images API
+https://docs.mapbox.com/help/troubleshooting/mapbox-gl-js-performance/ - General Tips
+https://docs.mapbox.com/help/troubleshooting/working-with-large-geojson-data/ - Large GeoJSON Data
+https://www.linkedin.com/advice/0/how-do-you-optimize-performance-mapbox-gl-js-large - Large GeoJSON Data 
+https://aysha.me/2020/04/tips-on-improving-the-map-rendering-performance-of-mapbox/ 
+https://docs.mapbox.com/style-spec/reference/layers/#symbol - Layer instead of using Marker

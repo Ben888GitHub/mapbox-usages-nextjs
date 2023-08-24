@@ -37,6 +37,10 @@ const ThreeDMapDynamic = ({ mapboxToken }) => {
 			bearing: -17.6,
 			antialias: true
 		});
+
+		return () => {
+			mapboxMap.remove();
+		};
 	}, [mapboxToken]);
 
 	const enable3DMode = () => {

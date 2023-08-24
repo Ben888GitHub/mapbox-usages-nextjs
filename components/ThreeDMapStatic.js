@@ -52,6 +52,10 @@ const ThreeDMapStatic = ({ mapboxToken }) => {
 				zoom: mapboxMap.getZoom().toFixed(2)
 			}));
 		});
+
+		return () => {
+			mapboxMap.remove();
+		};
 	}, [mapboxToken, mapStyle]);
 
 	return (

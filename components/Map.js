@@ -73,7 +73,12 @@ const Map = ({ mapboxToken }) => {
                       </div>`
 					)
 				)
-				.addTo(map);
+				.addTo(map)
+				.getElement() // * to enable function to zoom in the map when marker is clicked
+				.addEventListener('click', () => {
+					// Zoom to the marker's coordinates when clicked
+					map.flyTo({ center: [lng, lat], zoom: 12 });
+				});
 		});
 	};
 
@@ -143,7 +148,12 @@ const Map = ({ mapboxToken }) => {
 
                </div>`)
 			)
-			.addTo(mapboxMap);
+			.addTo(mapboxMap)
+			.getElement() // * to enable function to zoom in the map when marker is clicked
+			.addEventListener('click', () => {
+				// Zoom to the marker's coordinates when clicked
+				mapboxMap.flyTo({ center, zoom: 12 });
+			});
 
 		// Listen to the 'clear' event of the geocoder
 		geocoder.on('clear', () => {
